@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "./create.css";
-import Cookies from "js-cookie"; // <-- Add this
+import Cookies from "js-cookie";
 
-const Create = ({ username = "Username" }) => {
+const Create = () => {
+  // Get the username from localStorage
+  const user = JSON.parse(localStorage.getItem("user"));
+  const username = user?.username || "Username";
+
   const [message, setMessage] = useState("");
   const [unlockDate, setUnlockDate] = useState("");
   const [image, setImage] = useState(null);
@@ -33,7 +37,7 @@ const Create = ({ username = "Username" }) => {
     if (image) formData.append("image", image);
 
     // Get token from cookie
-    const token = Cookies.get("token"); // <-- Use cookie
+    const token = Cookies.get("token");
 
     try {
       const res = await fetch("http://localhost:5000/api/capsules", {

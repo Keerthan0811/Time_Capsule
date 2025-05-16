@@ -6,10 +6,12 @@ import Login from "./pages/login";
 import Create from "./pages/create";
 import Unlock from "./pages/unlock";
 import Dates from "./pages/dates";
+import ParticlesBackground from "./components/ParticlesBackground";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("login");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [theme, setTheme] = useState("light"); // light or dark
 
   // Handler for navbar menu selection
   const handleMenuSelect = (page) => {
@@ -21,6 +23,9 @@ function App() {
       setSelectedPage(page);
     }
   };
+
+  // Toggle theme
+  const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
   let pageContent;
   let pageTitle = "";
@@ -62,8 +67,14 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Navbar onMenuSelect={handleMenuSelect} isLoggedIn={isLoggedIn} />
+    <div className={`App ${theme}`}>
+      <ParticlesBackground theme={theme} />
+      <Navbar
+        onMenuSelect={handleMenuSelect}
+        isLoggedIn={isLoggedIn}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
       <PageCard title={pageTitle}>{pageContent}</PageCard>
     </div>
   );

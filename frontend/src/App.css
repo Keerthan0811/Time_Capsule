@@ -36,3 +36,138 @@
     transform: rotate(360deg);
   }
 }
+
+/* Animated background blobs */
+.animated-bg {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.55;
+  filter: blur(30px);
+  animation: moveBlobs 18s linear infinite alternate,
+    colorShift 10s linear infinite alternate;
+}
+
+.blob1 {
+  width: 420px;
+  height: 420px;
+  left: -120px;
+  top: -100px;
+  background: linear-gradient(135deg, #eebbc3, #232946, #b8c1ec);
+  animation-delay: 0s, 0s;
+}
+
+.blob2 {
+  width: 350px;
+  height: 350px;
+  right: -100px;
+  top: 40vh;
+  background: linear-gradient(135deg, #b8c1ec, #eebbc3, #232946);
+  animation-delay: 2s, 2s;
+}
+
+.blob3 {
+  width: 300px;
+  height: 300px;
+  left: 60vw;
+  bottom: -120px;
+  background: linear-gradient(135deg, #232946, #eebbc3, #b8c1ec);
+  animation-delay: 4s, 4s;
+}
+
+@keyframes moveBlobs {
+  0% {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+  25% {
+    transform: scale(1.1) translateY(30px) translateX(40px);
+  }
+  50% {
+    transform: scale(0.95) translateY(-20px) translateX(-30px);
+  }
+  75% {
+    transform: scale(1.05) translateY(40px) translateX(-20px);
+  }
+  100% {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+}
+
+@keyframes colorShift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Light/Dark mode backgrounds */
+.App.light {
+  background: linear-gradient(120deg, #f4f4f4 0%, #b8c1ec 100%);
+  color: #232946;
+  min-height: 100vh;
+  transition: background 0.5s, color 0.5s;
+}
+.App.dark {
+  background: linear-gradient(120deg, #181a20 0%, #232946 100%);
+  color: #eebbc3;
+  min-height: 100vh;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* Ensure text is visible in both themes */
+.App.light .page-card,
+.App.light .page-card-title,
+.App.light .page-card-content {
+  color: #232946 !important;
+  background: #fff;
+}
+
+.App.dark .page-card,
+.App.dark .page-card-title,
+.App.dark .page-card-content {
+  color: #fff !important;
+  background: #232946;
+}
+
+/* Impressive button hover effects */
+button, .navbar-link, .theme-toggle-btn {
+  transition: 
+    background 0.25s, 
+    color 0.25s, 
+    box-shadow 0.25s, 
+    transform 0.18s;
+  outline: none;
+}
+
+button:hover, .navbar-link:hover, .theme-toggle-btn:hover {
+  box-shadow: 0 0 18px 4px #eebbc3cc, 0 2px 12px #b8c1ec99;
+  transform: scale(1.07) rotate(-1deg);
+  background: linear-gradient(90deg, #eebbc3 60%, #b8c1ec 100%) !important;
+  color: #232946 !important;
+}
+
+button:active, .navbar-link:active, .theme-toggle-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 0 0 transparent;
+}
+
+button:focus, .navbar-link:focus, .theme-toggle-btn:focus {
+  outline: 2px solid #b8c1ec;
+  outline-offset: 2px;
+}
+
+

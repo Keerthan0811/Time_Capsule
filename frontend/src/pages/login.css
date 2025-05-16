@@ -1,59 +1,109 @@
-.login-form {
+.login-form, .register-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.3rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 18px;
+  padding: 2.2rem 2rem 2rem 2rem;
+  box-shadow: 0 8px 32px rgba(35, 41, 70, 0.18);
+  backdrop-filter: blur(8px);
+  animation: fadeInUp 0.7s cubic-bezier(.39,.575,.56,1) both;
 }
 
-.login-form label {
-  font-weight: 500;
-  margin-bottom: 0.25rem;
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px);}
+  100% { opacity: 1; transform: translateY(0);}
 }
 
-.login-form input {
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  width: 100%;
+.login-title, .register-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #232946;
+  margin-bottom: 0.5rem;
+  transition: color 0.4s;
 }
-
-.login-form button {
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-  border: none;
-  padding: 0.5rem 1.2rem;
-  transition: background 0.2s, color 0.2s;
-}
-
-.login-form button[type="submit"] {
-  background: #232946;
+.App.dark .login-title, .App.dark .register-title {
   color: #fff;
 }
 
-.login-form .create-account-btn {
-  background: #eebbc3;
+.login-form label, .register-form label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.5px;
   color: #232946;
+  transition: color 0.4s;
+}
+.App.dark .login-form label, .App.dark .register-form label {
+  color: #fff;
 }
 
-.login-form button:hover,
-.login-form .create-account-btn:hover {
-  opacity: 0.9;
+.login-form input, .register-form input {
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: 1.5px solid #b8c1ec;
+  width: 100%;
+  font-size: 1.1rem;
+  background: #f4f4f4;
+  color: #232946;
+  transition: border 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(184,193,236,0.08);
 }
 
-.login-form .login-title {
+.App.dark .login-form input, .App.dark .register-form input {
+  background: #232946;
+  color: #eebbc3;
+  border: 1.5px solid #eebbc3;
+}
+
+.login-form input:focus, .register-form input:focus {
+  border-color: #eebbc3;
+  box-shadow: 0 0 0 3px #eebbc355;
+  outline: none;
+}
+
+.login-form button, .register-form button {
+  font-size: 1.1rem;
   font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(90deg, #eebbc3, #b8c1ec);
+  color: #232946;
+  box-shadow: 0 2px 8px rgba(184,193,236,0.08);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
 }
 
-.login-form .login-buttons {
+.login-form button:hover, .register-form button:hover {
+  background: linear-gradient(90deg, #b8c1ec, #eebbc3);
+  color: #232946;
+  box-shadow: 0 0 18px 4px #eebbc3cc, 0 2px 12px #b8c1ec99;
+  transform: scale(1.07) rotate(-1deg);
+}
+
+.App.dark .login-form button, .App.dark .register-form button {
+  background: linear-gradient(90deg, #232946, #b8c1ec);
+  color: #eebbc3;
+}
+
+.App.dark .login-form button:hover, .App.dark .register-form button:hover {
+  background: linear-gradient(90deg, #b8c1ec, #232946);
+  color: #eebbc3;
+}
+
+.login-form .login-buttons, .register-form .login-buttons {
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.login-form .login-error {
+.login-form .login-error, .register-form .register-error {
   margin-top: 1rem;
-  color: #c00;
+  color: #d7263d;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }

@@ -9,3 +9,10 @@
   border-radius: 8px;
   margin-top: 0.5rem;
 }
+.unlock-capsule strong {
+  color: #232946;
+  transition: color 0.4s;
+}
+.App.dark .unlock-capsule strong {
+  color: #fff;
+}

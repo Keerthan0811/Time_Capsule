@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./navbar.css";
 
-const Navbar = ({ onMenuSelect, isLoggedIn }) => {
+const Navbar = ({ onMenuSelect, isLoggedIn, theme, onToggleTheme }) => {
   const [open, setOpen] = useState(false);
 
   const handleHamburgerClick = () => {
@@ -18,25 +18,60 @@ const Navbar = ({ onMenuSelect, isLoggedIn }) => {
     if (onMenuSelect) onMenuSelect("logout");
   };
 
+  // New: handle click on title
+  const handleTitleClick = () => {
+    if (isLoggedIn && onMenuSelect) onMenuSelect("create");
+  };
+
   return (
     <nav className="navbar">
-      <div className="navbar-title">
-        {isLoggedIn ? "TIME CAPSULE" : "Welcome to Time Capsule"}
-      </div>
-      <div
-        className={`navbar-hamburger${open ? " open" : ""}`}
-        onClick={handleHamburgerClick}
-        aria-label="Toggle menu"
-        tabIndex={isLoggedIn ? 0 : -1}
-        role="button"
+      <button
+        className="navbar-title"
+        onClick={handleTitleClick}
+        disabled={!isLoggedIn}
         style={{
-          pointerEvents: isLoggedIn ? "auto" : "none",
-          opacity: isLoggedIn ? 1 : 0.5,
+          cursor: isLoggedIn ? "pointer" : "default",
+          fontSize: "2rem",
+          fontWeight: "bold",
+          letterSpacing: "2px",
+          padding: 0,
+          color: "inherit",
         }}
+        aria-label="Go to Create Capsule"
       >
-        <span />
-        <span />
-        <span />
+        {isLoggedIn ? "TIME CAPSULE" : "Welcome to Time Capsule"}
+      </button>
+      <div className="navbar-actions">
+        <div
+          className={`navbar-hamburger${open ? " open" : ""}`}
+          onClick={handleHamburgerClick}
+          aria-label="Toggle menu"
+          tabIndex={isLoggedIn ? 0 : -1}
+          role="button"
+          style={{
+            pointerEvents: isLoggedIn ? "auto" : "none",
+            opacity: isLoggedIn ? 1 : 0.5,
+          }}
+        >
+          <span />
+          <span />
+          <span />
+        </div>
+        <button
+          className="theme-toggle-btn"
+          onClick={onToggleTheme}
+          aria-label="Toggle theme"
+          style={{
+            marginLeft: "1rem",
+            background: "none",
+            border: "none",
+            color: "inherit",
+            fontSize: "1.2rem",
+            cursor: "pointer",
+          }}
+        >
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
       </div>
       {isLoggedIn && (
         <div className={`navbar-menu${open ? " show" : ""}`}>

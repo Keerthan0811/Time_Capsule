@@ -1,0 +1,114 @@
+.dates-list-container {
+  max-width: 520px;
+  margin: 2.5rem auto 0 auto;
+  background: rgba(255,255,255,0.92);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(35, 41, 70, 0.18);
+  padding: 2.2rem 2rem 1.5rem 2rem;
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid #eebbc3;
+  backdrop-filter: blur(6px);
+  animation: fadeInUp 0.7s cubic-bezier(.39,.575,.56,1) both;
+}
+
+.App.dark .dates-list-container {
+  background: rgba(35,41,70,0.96);
+  color: #fff;
+  border: 1.5px solid #b8c1ec;
+}
+
+.dates-list-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #232946;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
+
+.App.dark .dates-list-title {
+  color: #fff;
+  background: none;
+}
+
+.dates-list {
+  list-style: decimal inside;
+  padding: 0;
+  margin: 0;
+}
+
+.dates-list li {
+  font-size: 1.15rem;
+  margin-bottom: 1.1rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+  background: #f4f4f4;
+  color: #232946;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(184,193,236,0.08);
+}
+
+.App.dark .dates-list li {
+  background: #393e6a;
+  color: #fff;
+}
+
+.dates-list li.locked {
+  color: #d7263d;
+  font-weight: bold;
+  border-left: 6px solid #d7263d;
+  background: #ffeaea;
+  box-shadow: 0 0 12px #d7263d33;
+}
+
+.App.dark .dates-list li.locked {
+  background: #2d1a1a;
+  color: #ff6b6b;
+  border-left: 6px solid #ff6b6b;
+  box-shadow: 0 0 12px #ff6b6b33;
+}
+
+.dates-list li.unlocked {
+  color: #219653;
+  font-weight: bold;
+  border-left: 6px solid #219653;
+  background: #eaffea;
+  box-shadow: 0 0 12px #21965333;
+}
+
+.App.dark .dates-list li.unlocked {
+  background: #1a2d1a;
+  color: #6bffb1;
+  border-left: 6px solid #6bffb1;
+  box-shadow: 0 0 12px #6bffb133;
+}
+
+.dates-list li:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 0 18px 4px #eebbc3cc, 0 2px 12px #b8c1ec99;
+}
+
+.dates-status {
+  margin-left: auto;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.85;
+  color: #232946;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
+
+.App.dark .dates-status {
+  color: #fff;
+  background: none;
+}

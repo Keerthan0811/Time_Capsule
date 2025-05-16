@@ -1,67 +1,184 @@
+/* Light mode (default) */
+.App.light {
+  background: #f4f4f4;
+  color: #232946;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+.App.light .page-card {
+  background: #fff;
+  color: #232946;
+}
+.App.light .navbar {
+  background: #232946;
+  color: #fff;
+}
+
+/* Dark mode */
+.App.dark {
+  background: #181a20;
+  color: #eebbc3;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+.App.dark .page-card {
+  background: #232946;
+  color: #eebbc3;
+}
+.App.dark .navbar {
+  background: #181a20;
+  color: #eebbc3;
+}
+.App.dark .navbar-link {
+  color: #eebbc3;
+}
+.App.dark .navbar-link:hover {
+  background: #232946;
+  color: #fff;
+}
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #232946;
+  background: rgba(35,41,70,0.98);
   color: #fff;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2.5rem;
   position: relative;
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 4px 24px rgba(35, 41, 70, 0.12);
+  z-index: 2;
 }
 
 .navbar-title {
-  font-size: 1.5rem;
+  background: none;
+  color: #f21313;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  font-size: 2rem;
   font-weight: bold;
   letter-spacing: 2px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: none;
+}
+
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .navbar-hamburger {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
+  margin-right: 0.5rem;
 }
 .navbar-hamburger span {
-  height: 4px;
-  background: #fff;
-  margin: 4px 0;
-  border-radius: 2px;
+  height: 5px;
+  background: linear-gradient(90deg, #eebbc3, #b8c1ec, #232946);
+  margin: 5px 0;
+  border-radius: 3px;
   transition: 0.3s;
   display: block;
 }
 .navbar-hamburger.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg);
 }
 .navbar-hamburger.open span:nth-child(2) {
   opacity: 0;
 }
 .navbar-hamburger.open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.theme-toggle-btn {
+  margin-left: 0.5rem;
+  background: linear-gradient(135deg, #eebbc3, #b8c1ec);
+  border: none;
+  color: #232946;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(184,193,236,0.12);
+  transition: background 0.3s, color 0.3s;
+}
+
+.App.dark .theme-toggle-btn {
+  background: linear-gradient(135deg, #232946, #b8c1ec);
+  color: #eebbc3;
 }
 
 .navbar-menu {
   position: absolute;
   top: 100%;
   right: 0;
-  background: #232946;
+  background: rgba(35,41,70,0.98);
   display: none;
   flex-direction: column;
-  min-width: 180px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-  border-radius: 0 0 8px 8px;
-  z-index: 1;
+  min-width: 200px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  border-radius: 0 0 12px 12px;
+  z-index: 10;
+  margin-top: 0.5rem;
 }
 .navbar-menu.show {
   display: flex;
 }
 .navbar-link {
-  color: #fff;
+  color: #f11a1a;
   text-decoration: none;
-  padding: 1rem;
-  transition: background 0.2s;
+  padding: 1.1rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  text-align: left;
+  transition: background 0.2s, color 0.2s;
+  border-bottom: 1px solid #ecc3b8;
 }
-.navbar-link:hover {
-  background: #393e6a;
+.navbar-link:last-child {
+  border-bottom: none;
+}
+.navbar-link:hover,
+.navbar-link:focus {
+  background: linear-gradient(90deg, #e40829 60%, #b8c1ec 100%);
+  color: #232946;
+}
+
+.App.light .navbar-title {
+  color: #232946;
+}
+.App.light .navbar-menu .navbar-link {
+  background: #fff;
+  color: #232946;
+  border-bottom: 1px solid #eebbc3;
+}
+.App.light .navbar-menu .navbar-link:hover,
+.App.light .navbar-menu .navbar-link:focus {
+  background: linear-gradient(90deg, #cb0e2a 60%, #b8c1ec 100%);
+  color: #232946;
+}
+.App.dark .navbar-title {
+  color: #fff;
+}
+.App.dark .navbar-menu .navbar-link {
+  background: #232946;
+  color: #eebbc3;
+  border-bottom: 1px solid #b8c1ec;
+}
+.App.dark .navbar-menu .navbar-link:hover,
+.App.dark .navbar-menu .navbar-link:focus {
+  background: linear-gradient(90deg, #b8c1ec 60%, #eebbc3 100%);
+  color: #232946;
 }
