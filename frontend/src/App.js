@@ -12,6 +12,9 @@ function App() {
   const [selectedPage, setSelectedPage] = useState("login");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [showModal, setShowModal] = useState(false);
+  const [modalDeleteId, setModalDeleteId] = useState(null);
+  const [refreshUnlock, setRefreshUnlock] = useState(false);
   const particlesRef = useRef();
 
   // Handler for navbar menu selection
@@ -27,6 +30,36 @@ function App() {
 
   // Toggle theme
   const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"));
+
+  // Handler to open modal from Unlock page
+  const handleRequestDelete = (id) => {
+    setShowModal(true);
+    setModalDeleteId(id);
+  };
+
+  // Handler to confirm delete
+  const handleConfirmDelete = async () => {
+    setShowModal(false);
+    try {
+      const token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
+      await fetch(`http://localhost:5000/api/capsules/${modalDeleteId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // Optionally handle error here
+      setRefreshUnlock((prev) => !prev); // trigger refresh in Unlock
+    } catch (err) {
+      // Optionally handle error here
+    }
+    setModalDeleteId(null);
+  };
+
+  const handleCancelDelete = () => {
+    setShowModal(false);
+    setModalDeleteId(null);
+  };
 
   let pageContent;
   let pageTitle = "";
@@ -51,7 +84,12 @@ function App() {
         break;
       case "unlock":
         pageTitle = "Unlocked Capsule";
-        pageContent = <Unlock />;
+        pageContent = (
+          <Unlock
+            onRequestDelete={handleRequestDelete}
+            refresh={refreshUnlock}
+          />
+        );
         break;
       case "unlockDates":
         pageTitle = "Capsule Unlock Dates";
@@ -81,6 +119,17 @@ function App() {
           onLoginBlast: (pos) => particlesRef.current?.blast?.(pos)
         })}
       </PageCard>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-title">Are You Sure Want To Delete The Capsule?</div>
+            <div className="modal-actions">
+              <button className="modal-btn delete" onClick={handleConfirmDelete}>Delete</button>
+              <button className="modal-btn cancel" onClick={handleCancelDelete}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./unlock.css";
 import Cookies from "js-cookie";
 
-const Unlock = () => {
+const Unlock = ({ onRequestDelete, refresh }) => {
   const [capsules, setCapsules] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -31,28 +31,8 @@ const Unlock = () => {
 
   useEffect(() => {
     fetchCapsules();
-  }, []);
-
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this capsule?")) return;
-    try {
-      const token = Cookies.get("token");
-      const res = await fetch(`http://localhost:5000/api/capsules/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        alert(data.message || "Failed to delete capsule.");
-      } else {
-        setCapsules((prev) => prev.filter((cap) => cap._id !== id));
-      }
-    } catch (err) {
-      alert("Network error. Please try again.");
-    }
-  };
+    // eslint-disable-next-line
+  }, [refresh]);
 
   if (loading) return <div>Loading unlocked capsules...</div>;
   if (error) return <div style={{ color: "red" }}>{error}</div>;
@@ -70,7 +50,7 @@ const Unlock = () => {
             <strong>Locked Date:</strong> {new Date(cap.createdAt).toLocaleString()}
           </div>
           <div>
-            <strong>Unlocked Date:</strong> {new Date(cap.unlockDate).toLocaleDateString()}
+            <strong>Unlocked Date:</strong> {new Date(cap.unlockDate).toLocaleString()}
           </div>
           {cap.image && (
             <div>
@@ -97,7 +77,7 @@ const Unlock = () => {
               boxShadow: "0 2px 8px #d7263d44",
               transition: "background 0.2s, color 0.2s"
             }}
-            onClick={() => handleDelete(cap._id)}
+            onClick={() => onRequestDelete(cap._id)}
           >
             Delete
           </button>

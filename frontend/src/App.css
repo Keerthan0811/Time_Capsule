@@ -170,4 +170,61 @@ button:focus, .navbar-link:focus, .theme-toggle-btn:focus {
   outline-offset: 2px;
 }
 
+/* Centered modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(35,41,70,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+.modal-content {
+  background: #fff;
+  color: #232946;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(35, 41, 70, 0.18);
+  text-align: center;
+  min-width: 320px;
+}
+.App.dark .modal-content {
+  background: #232946;
+  color: #fff;
+}
+.modal-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+.modal-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.modal-btn {
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.modal-btn.delete {
+  background: #d7263d;
+  color: #fff;
+}
+.modal-btn.cancel {
+  background: #b8c1ec;
+  color: #232946;
+}
+.modal-btn.delete:hover {
+  background: #a81b2b;
+}
+.modal-btn.cancel:hover {
+  background: #eebbc3;
+}
+
 
