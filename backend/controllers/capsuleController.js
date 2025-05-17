@@ -105,8 +105,23 @@ const getAllCapsules = async (req, res) => {
   }
 };
 
+const deleteCapsule = async (req, res) => {
+  try {
+    const capsule = await Capsule.findById(req.params.id);
+    if (!capsule) return res.status(404).json({ message: "Capsule not found" });
+    if (capsule.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+    await capsule.deleteOne();
+    res.json({ message: "Capsule deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "Server error while deleting capsule" });
+  }
+};
+
 module.exports = {
   createCapsule,
   getUnlockedCapsules,
   getAllCapsules,
+  deleteCapsule,
 };

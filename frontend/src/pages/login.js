@@ -3,7 +3,7 @@ import Register from "./register";
 import "./login.css";
 import Cookies from "js-cookie"; // <-- Add this import
 
-const Login = ({ onLoginSuccess }) => {
+const Login = ({ onLoginSuccess, onLoginBlast }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
@@ -32,7 +32,16 @@ const Login = ({ onLoginSuccess }) => {
         // Set cookie for 7 days
         Cookies.set("token", data.token, { expires: 7 });
         setErrorMsg("");
-        if (onLoginSuccess) onLoginSuccess();
+        if (onLoginBlast && window.loginBtn) {
+          const rect = window.loginBtn.getBoundingClientRect();
+          onLoginBlast({
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+          });
+        }
+        setTimeout(() => {
+          if (onLoginSuccess) onLoginSuccess();
+        }, 800); // Wait for blast animation
       }
     } catch (err) {
       setLoginFailed(true);
@@ -68,7 +77,12 @@ const Login = ({ onLoginSuccess }) => {
         />
       </div>
       <div className="login-buttons">
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          ref={(btn) => (window.loginBtn = btn)} // Add a ref for the login button
+        >
+          Login
+        </button>
         <button
           type="button"
           className="create-account-btn"
@@ -77,11 +91,7 @@ const Login = ({ onLoginSuccess }) => {
           Register
         </button>
       </div>
-      {loginFailed && (
-        <div className="login-error">
-          {errorMsg}
-        </div>
-      )}
+      {loginFailed && <div className="login-error">{errorMsg}</div>}
     </form>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
 import PageCard from "./components/pagecard";
@@ -11,7 +11,8 @@ import ParticlesBackground from "./components/ParticlesBackground";
 function App() {
   const [selectedPage, setSelectedPage] = useState("login");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [theme, setTheme] = useState("light"); // light or dark
+  const [theme, setTheme] = useState("light");
+  const particlesRef = useRef();
 
   // Handler for navbar menu selection
   const handleMenuSelect = (page) => {
@@ -68,14 +69,18 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      <ParticlesBackground theme={theme} />
+      <ParticlesBackground ref={particlesRef} theme={theme} />
       <Navbar
         onMenuSelect={handleMenuSelect}
         isLoggedIn={isLoggedIn}
         theme={theme}
         onToggleTheme={toggleTheme}
       />
-      <PageCard title={pageTitle}>{pageContent}</PageCard>
+      <PageCard title={pageTitle}>
+        {React.cloneElement(pageContent, {
+          onLoginBlast: (pos) => particlesRef.current?.blast?.(pos)
+        })}
+      </PageCard>
     </div>
   );
 }

@@ -75,9 +75,7 @@ const Navbar = ({ onMenuSelect, isLoggedIn, theme, onToggleTheme }) => {
       </div>
       {isLoggedIn && (
         <div className={`navbar-menu${open ? " show" : ""}`}>
-          <button className="navbar-link" onClick={handleLogout}>
-            Logout
-          </button>
+          
           <button className="navbar-link" onClick={() => handleMenuClick("create")}>
             Create
           </button>
@@ -85,7 +83,10 @@ const Navbar = ({ onMenuSelect, isLoggedIn, theme, onToggleTheme }) => {
             Unlock
           </button>
           <button className="navbar-link" onClick={() => handleMenuClick("unlockDates")}>
-            UnlockDates
+            Dates
+          </button>
+          <button className="navbar-link" onClick={handleLogout}>
+            Logout
           </button>
         </div>
       )}

@@ -79,22 +79,29 @@ const Create = () => {
         />
       </div>
       <div>
-        <label>Unlock Date:</label>
+        <label>Unlock Date & Time:</label>
         <input
-          type="date"
+          type="datetime-local"
           value={unlockDate}
           required
-          min={minDateStr}
+          min={minDateStr + "T00:00"}
           onChange={(e) => setUnlockDate(e.target.value)}
         />
       </div>
       <div>
         <label>Image (optional):</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
+        <div className="custom-file-input-wrapper">
+          <input
+            type="file"
+            id="image-upload"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleImageChange}
+          />
+          <label htmlFor="image-upload" className="custom-file-label">
+            {image ? image.name : "Choose an image"}
+          </label>
+        </div>
       </div>
       <button type="submit">Create Capsule</button>
       {success && (

@@ -6,6 +6,7 @@ const {
   createCapsule,
   getUnlockedCapsules,
   getAllCapsules, // <-- add this
+  deleteCapsule,
 } = require("../controllers/capsuleController");
 
 // Upload image and create capsule
@@ -16,5 +17,8 @@ router.get("/unlocked", protect, getUnlockedCapsules);
 
 // GET: get all capsules (locked and unlocked)
 router.get("/all", protect, getAllCapsules);
+
+// DELETE: delete a capsule
+router.delete("/:id", protect, deleteCapsule);
 
 module.exports = router;
