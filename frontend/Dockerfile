@@ -1,4 +1,3 @@
-# frontend/Dockerfile
 # Use Node.js to build the React app
 FROM node:20-alpine AS build
 
