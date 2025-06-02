@@ -1,6 +1,6 @@
 # frontend/Dockerfile
 # Use Node.js to build the React app
-FROM node:20 AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
 # Copy the rest of the frontend source code
 COPY . .
