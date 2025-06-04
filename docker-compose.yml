@@ -15,6 +15,8 @@ services:
       - "5000:5000"
     environment:
       - MONGO_URI=mongodb://mongo:27017/timecapsule
+      - JWT_SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjI4OTI5ZjBiZDBjNTM3YWJkZmYxYyIsImlhdCI6MTc0Mzk1OTUyMSwiZXhwIjoxNzQ0NTY0MzIxfQ.XQyBzjMz3Kpmh9UAupzflVIB6ayMFQd_4A8L6h3l6U0
+
     depends_on:
       - mongo
 
