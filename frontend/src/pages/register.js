@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./register.css";
+const URI="https://timecapsule-backend-3fch.onrender.com";
 
 const Register = ({ onRegister }) => {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ const Register = ({ onRegister }) => {
     setSuccess(false);
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/api/users/register`, {
+      const res = await fetch(`${URI}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),

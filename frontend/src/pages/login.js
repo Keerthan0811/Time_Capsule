@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Register from "./register";
 import "./login.css";
 import Cookies from "js-cookie"; // <-- Add this import
+const URI="https://timecapsule-backend-3fch.onrender.com";
 
 const Login = ({ onLoginSuccess, onLoginBlast }) => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Login = ({ onLoginSuccess, onLoginBlast }) => {
     setErrorMsg("");
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/api/users/login`, {
+      const res = await fetch(`${URI}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

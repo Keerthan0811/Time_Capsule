@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./dates.css";
+const URI="https://timecapsule-backend-3fch.onrender.com";
 
 const Dates = () => {
   const [dates, setDates] = useState([]);
@@ -14,7 +15,7 @@ const Dates = () => {
         const user = JSON.parse(localStorage.getItem("user"));
         const token = user?.token;
         // Fetch all capsules, not just unlocked
-        const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/api/capsules/all`, {
+        const res = await fetch(`${URI}/api/capsules/all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

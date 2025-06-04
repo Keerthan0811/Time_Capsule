@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./create.css";
 import Cookies from "js-cookie";
+const URI="https://timecapsule-backend-3fch.onrender.com";
 
 const Create = () => {
   // Get the username from localStorage
@@ -40,7 +41,7 @@ const Create = () => {
     const token = Cookies.get("token");
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/api/capsules`, {
+      const res = await fetch(`${URI}/api/capsules`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

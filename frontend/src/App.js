@@ -7,6 +7,7 @@ import Create from "./pages/create";
 import Unlock from "./pages/unlock";
 import Dates from "./pages/dates";
 import ParticlesBackground from "./components/ParticlesBackground";
+const URI="https://timecapsule-backend-3fch.onrender.com";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("login");
@@ -42,7 +43,7 @@ function App() {
     setShowModal(false);
     try {
       const token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
-      await fetch(`http://localhost:5000/api/capsules/${modalDeleteId}`, {
+      await fetch(`${URI}/api/capsules/${modalDeleteId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

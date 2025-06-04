@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./unlock.css";
 import Cookies from "js-cookie";
-
+const URI="https://timecapsule-backend-3fch.onrender.com";
 const Unlock = ({ onRequestDelete, refresh }) => {
   const [capsules, setCapsules] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ const Unlock = ({ onRequestDelete, refresh }) => {
     setError("");
     try {
       const token = Cookies.get("token");
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/api/capsules/unlocked`, {
+      const res = await fetch(`${URI}/api/capsules/unlocked`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
