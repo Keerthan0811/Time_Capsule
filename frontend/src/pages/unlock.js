@@ -12,7 +12,7 @@ const Unlock = ({ onRequestDelete, refresh }) => {
     setError("");
     try {
       const token = Cookies.get("token");
-      const res = await fetch("http://localhost:5000/api/capsules/unlocked", {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/api/capsules/unlocked`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

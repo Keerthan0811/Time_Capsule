@@ -40,7 +40,7 @@ const Create = () => {
     const token = Cookies.get("token");
 
     try {
-      const res = await fetch("http://localhost:5000/api/capsules", {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URI}/api/capsules`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
