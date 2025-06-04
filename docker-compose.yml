@@ -1,12 +1,5 @@
-version: '3'
+version: '2'
 services:
-  mongo:
-    image: mongo:6
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - mongo-data:/data/db
 
   backend:
     build: ./backend
@@ -14,11 +7,8 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/timecapsule
+      - MONGO_URI=mongodb+srv://keerthan11c:pyAU2loXgXuMjDI3@devops.olckxah.mongodb.net/timecapsule?retryWrites=true&w=majority&appName=devops
       - JWT_SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjI4OTI5ZjBiZDBjNTM3YWJkZmYxYyIsImlhdCI6MTc0Mzk1OTUyMSwiZXhwIjoxNzQ0NTY0MzIxfQ.XQyBzjMz3Kpmh9UAupzflVIB6ayMFQd_4A8L6h3l6U0
-
-    depends_on:
-      - mongo
 
   frontend:
     image: keerthan11c/timecapsule-frontend:latest
@@ -28,6 +18,3 @@ services:
       - REACT_APP_BACKEND_URI=http://backend:5000
     depends_on:
       - backend
-
-volumes:
-  mongo-data:
