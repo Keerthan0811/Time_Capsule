@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://keerthan11c:Keerthan@devops.olckxah.mongodb.net/?retryWrites=true&w=majority&appName=devops";
 
 const connectDB = async () => {
   try {
