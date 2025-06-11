@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Register from "./register";
 import "./login.css";
 import Cookies from "js-cookie"; // <-- Add this import
-const URI="https://timecapsule-backend-3fch.onrender.com";
+const URI=process.env.REACT_APP_BACKEND_URI;
 
 const Login = ({ onLoginSuccess, onLoginBlast }) => {
   const [email, setEmail] = useState("");

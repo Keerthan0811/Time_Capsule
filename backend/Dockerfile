@@ -13,6 +13,9 @@ RUN npm install --production
 # Copy the rest of the backend source code
 COPY . .
 
+# Add this line to copy .env into the image
+COPY .env .env
+
 # Expose the backend port
 EXPOSE 5000
 

@@ -7,7 +7,7 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const capsuleRoutes = require("./routes/capsuleRoutes");
 
-dotenv.config(); // Load environment variables
+dotenv.config(); // Loads .env
 connectDB(); // Connect to MongoDB
 
 const app = express();

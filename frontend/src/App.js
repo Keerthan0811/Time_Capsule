@@ -7,7 +7,7 @@ import Create from "./pages/create";
 import Unlock from "./pages/unlock";
 import Dates from "./pages/dates";
 import ParticlesBackground from "./components/ParticlesBackground";
-const URI="https://timecapsule-backend-3fch.onrender.com";
+const URI=process.env.REACT_APP_BACKEND_URI;
 
 function App() {
   const [selectedPage, setSelectedPage] = useState("login");

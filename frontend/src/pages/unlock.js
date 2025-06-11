@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./unlock.css";
 import Cookies from "js-cookie";
-const URI="https://timecapsule-backend-3fch.onrender.com";
+const URI=process.env.REACT_APP_BACKEND_URI;
+
 const Unlock = ({ onRequestDelete, refresh }) => {
   const [capsules, setCapsules] = useState([]);
   const [loading, setLoading] = useState(true);

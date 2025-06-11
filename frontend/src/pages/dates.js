@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./dates.css";
-const URI="https://timecapsule-backend-3fch.onrender.com";
+const URI=process.env.REACT_APP_BACKEND_URI;
 
 const Dates = () => {
   const [dates, setDates] = useState([]);

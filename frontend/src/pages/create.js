@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./create.css";
 import Cookies from "js-cookie";
-const URI="https://timecapsule-backend-3fch.onrender.com";
+const URI=process.env.REACT_APP_BACKEND_URI;
 
 const Create = () => {
   // Get the username from localStorage

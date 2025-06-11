@@ -12,6 +12,9 @@ RUN npm ci
 # Copy the rest of the frontend source code
 COPY . .
 
+# Copy .env file for build-time env vars
+COPY .env .env
+
 # Build the React app for production
 RUN npm run build
 
