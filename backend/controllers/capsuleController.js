@@ -58,14 +58,6 @@ const getUnlockedCapsules = async (req, res) => {
     // REMOVE EMAIL SENDING LOGIC
     for (const cap of capsules) {
       if (!cap.notified) {
-        // const user = await User.findById(userId);
-        // if (user && user.email) {
-        //   await sendMail({
-        //     to: user.email,
-        //     subject: "Your Time Capsule has been opened!",
-        //     text: `Hi ${user.username}, your capsule scheduled for ${cap.unlockDate.toLocaleDateString()} has been unlocked!`,
-        //   });
-        // }
         cap.notified = true;
         await cap.save();
       }
